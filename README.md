@@ -22,6 +22,8 @@ Given images or videos the goal of this project is to detect the lanes in these 
 [step6]: ./writeup_images/solidYellowCurve.jpg_step6_drawn_lines_image.png "Drawn Lanes"
 [step7]: ./writeup_images/solidYellowCurve.jpg_step7_weighted_imgage_image_image.png "Output Image"
 
+[fail_polyfit]: ./writeup_images/polyfit_2_fail.png "Polyfit degree two fail"
+
 ---
 
 ### Reflection
@@ -31,7 +33,7 @@ The used pipeline consisted of following 5 steps:
 1. #### Filter for white and yellow colors
 
    Because it is known that the lanes are only yellow or white the image is filterd for these colors.
-   Therefor the image ist converted to the HSV color model, colors which are not yellow or white are masked out and the mask is applied to the original image. Using this image as input
+   Therefor the image is converted to the HSV color model, colors which are not yellow or white are masked out and the mask is applied to the original image. Using this image as input
    ![alt text][step0]
    we get the following output after the first step:
    ![alt text][step1]
@@ -62,7 +64,7 @@ The used pipeline consisted of following 5 steps:
 
 6. #### Drawing the lanes
 
-   To extend te lines to lanes and draw the left and right lane first all lines are sorted into lines for the left or right lane. This is done by the gradient of the lines. Additionally all lines which have a gradient above or below a threshold are filterd out because they can't be part of a lane.
+   To extend the lines to lanes and draw the left and right lane first all lines are sorted into lines for the left or right lane. This is done by the gradient of the lines. Additionally all lines which have a gradient above or below a threshold are filterd out because they can't be part of a lane.
 
    After that the numpy function `polyfit` is used to find a single line which fits best through all points of the left lines and another one which fits for the right lines. These two lines should be the searched lanes.
    The found lanes are shown in this image
@@ -75,14 +77,11 @@ After the found lanes are combined with the original image we get the following 
 
 ### 2. Identify potential shortcomings
 
+One potential shortcoming would be what would happen when there are other white or yellow parts in the region of interest additional to the lanes. For example this could be white text or arrows wich are often printed on the road for orientation. The pipeline would find these parts of the image and maybe classify them as lanes.
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
+Another shortcoming could be that the pipeline won't be able the detect the lanes if another camera angle is used or if the lanes are extra small or wide.
 
 ### 3. Possible improvements
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+At the current state the pipeline only find straight lines while the lanes are often slightly bent. Using the `polyfit` function whith a degree of 2 instead of 1 achieves this partly but often finds a completly wrong polynomial like in this image:
+![alt text][fail_polyfit]
