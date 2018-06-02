@@ -28,7 +28,7 @@ Given images or videos the goal of this project is to detect the lanes in these 
 
 ### Reflection
 
-The used pipeline consisted of following 5 steps:
+The used pipeline consisted of following 6 steps:
 
 1. #### Filter for white and yellow colors
 
