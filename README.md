@@ -2,7 +2,7 @@
 
 This repository contains my solution for the project "Finding Lane Lines" of the Udacity Self-Driving Car Engineer Nanodegree Program. The python code could be found in the jupyter notebook [P1](P1.ipynb), the generated images in the folder [test_images_output](test_images_output/) and the videos in the folder [test_videos_output](test_videos_output/).
 
-The following part of the README conatains a writeup which describes how the lane finding is achieved.
+The following part of the README contains a writeup which describes how the lane finding is achieved.
 
 
 ## Writeup
